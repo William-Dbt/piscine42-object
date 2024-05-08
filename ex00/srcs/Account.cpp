@@ -16,15 +16,23 @@ void	Account::setId(const int id) {
 	this->_id = id;
 }
 
-int Account::getId() const {
-	return this->_id;
-}
-
 void	Account::setValue(const int accountValue) {
 	this->_value = accountValue;
 }
 
-int	Account::getValue() const {
+int& Account::getId() {
+	return this->_id;
+}
+
+int&	Account::getValue() {
+	return this->_value;
+}
+
+const int& Account::getId() const {
+	return this->_id;
+}
+
+const int&	Account::getValue() const {
 	return this->_value;
 }
 

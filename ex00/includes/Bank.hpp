@@ -4,8 +4,6 @@
 # include <vector>
 # include "Account.hpp"
 
-// TODO: Try to encapsulate Account class in Bank class
-
 class	Bank {
 	public:
 		Bank();
@@ -14,19 +12,27 @@ class	Bank {
 		~Bank();
 
 		void	createAccount(const int accountValue);
-		void	modifyAccount(const int accountId, const int newValue);
+		void	createAccount(const Account& account);
+		void	addValueToAccount(const int accountId, const int value);
+		void	removeValueToAccount(const int accountId, const int value);
 		void	deleteAccount(const int accountId);
 
-		int						getLiquidity() const;
-		Account*				getClientAccountById(const int accountId);
-		std::vector<Account *>	getClientAccounts() const;
+		void	giveLoan(const int accountId, const int value);
+
+		const int&						getLiquidity() const;
+		const std::vector<Account *>&	getClientAccounts() const;
 
 	private:
 		int	_liquidity;
+		int	_lastAccountId;
 
 		std::vector<Account *>	_clientAccounts;
 
 		void	setLiquidity(const int newLiquidity);
+
+		int&					getLiquidity();
+		Account*				getClientAccountById(const int accountId);
+		std::vector<Account *>&	getClientAccounts();
 };
 
 std::ostream&	operator<<(std::ostream &stream, const Bank &bank);

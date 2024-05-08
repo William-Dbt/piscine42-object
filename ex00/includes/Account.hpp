@@ -9,8 +9,8 @@ class Account {
 		Account(const int id, const int value);
 		Account(const Account& ref);
 
-		int	getId() const;
-		int	getValue() const;
+		const int&	getId() const;
+		const int&	getValue() const;
 
 	private:
 		int	_id;
@@ -18,8 +18,15 @@ class Account {
 
 		void	setId(const int id);
 		void	setValue(const int value);
+
+		int&		getId();
+		int&		getValue();
+
+		friend class Bank;
 };
 
 std::ostream&	operator<<(std::ostream &stream, const Account &account);
+
+class Bank;
 
 #endif

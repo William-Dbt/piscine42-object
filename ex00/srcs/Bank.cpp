@@ -12,9 +12,6 @@ Bank::~Bank() {
 			delete *it;
 }
 
-// lastId refers to the id of the last created account
-// We'll use this for each creation of accounts unstead of keeping this in the class
-// Because this function is the only way to add an account in the bank
 void	Bank::createAccount(const int accountValue) {
 	Account*	newAccount;
 

@@ -7,3 +7,5 @@ This piscine is a completion of the common core skills that we've learned during
 ## Content
 
 ***Module 00***: Encapsulation.  
+	- ex00: Create a simple safe banking system  
+	- ex01: Let's work with 2D graph in ASCII Art  

@@ -19,9 +19,6 @@ class Account {
 		void	setId(const int id);
 		void	setValue(const int value);
 
-		int&		getId();
-		int&		getValue();
-
 		friend class Bank;
 };
 

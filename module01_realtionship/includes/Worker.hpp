@@ -15,7 +15,10 @@ typedef struct	Statictic {
 class	Worker {
 	public:
 		Worker();
-		Worker(int x, int y, int z, int level, int exp);
+		Worker(int x, int y, int z, int exp);
+
+		void	setPosition(int x, int y, int z);
+		void	earnExp(int exp);
 
 		const t_position&	getPosition() const;
 		const t_statistic&	getStatistics() const;
@@ -24,5 +27,7 @@ class	Worker {
 		t_position	_position;
 		t_statistic	_statistics;
 };
+
+std::ostream&	operator<<(std::ostream &stream, const Worker &worker);
 
 #endif

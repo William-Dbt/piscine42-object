@@ -20,7 +20,7 @@ PATHSRCS	= srcs/
 PATHHEADERS	= includes/
 PATHNULL	= /dev/null
 
-SRCS		= $(addprefix ${PATHSRCS}, main.cpp Worker.cpp)
+SRCS		= $(addprefix ${PATHSRCS}, main.cpp Worker.cpp Shovel.cpp)
 
 OBJS		= ${SRCS:.cpp=.o}
 

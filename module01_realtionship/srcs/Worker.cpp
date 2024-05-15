@@ -3,6 +3,8 @@
 
 Worker::Worker() {
 	std::cout << "[Worker] Default constructor" << std::endl;
+	this->_shovel = nullptr;
+
 	this->_position.x = 0;
 	this->_position.y = 0;
 	this->_position.z = 0;
@@ -13,12 +15,29 @@ Worker::Worker() {
 
 Worker::Worker(int x, int y, int z, int exp) {
 	std::cout << "[Worker] Given values constructor" << std::endl;
+	this->_shovel = nullptr;
+
 	this->_position.x = x;
 	this->_position.y = y;
 	this->_position.z = z;
 
 	this->_statistics.exp = exp;
 	this->_statistics.level = (exp > 0 ? (int)(exp / 1000) : 0);
+}
+
+Worker::~Worker() {
+	std::cout << "[Worker] Destructor called" << std::endl;
+	if (this->_shovel)
+		this->_shovel->setWorker(nullptr);
+}
+
+void	Worker::takeShovel(Shovel& shovel) {
+	shovel.setWorker(this);
+	this->_shovel = &shovel;
+}
+
+void	Worker::removeShovel() {
+	this->_shovel = nullptr;
 }
 
 void	Worker::setPosition(int x, int y, int z) {
@@ -45,6 +64,10 @@ void	Worker::earnExp(int exp) {
 	}
 }
 
+const Shovel*	Worker::getShovel() const {
+	return this->_shovel;
+}
+
 const t_position&	Worker::getPosition() const {
 	return this->_position;
 }
@@ -64,7 +87,8 @@ std::ostream&	operator<<(std::ostream &stream, const Worker &worker) {
 	stream << "Position: (" << wPos.x << ", " << wPos.y << ", " << wPos.z << ")\n";
 	stream << "Statistics:\n";
 	stream << "  - Exp: " << wStats.exp << '\n';
-	stream << "  - Level: " << wStats.level << std::endl;
+	stream << "  - Level: " << wStats.level << "\n";
+	stream << "Is worker using a shovel ? " << (worker.getShovel() != nullptr ? "Yes" : "No") << std::endl;
 	return stream;
 }
 

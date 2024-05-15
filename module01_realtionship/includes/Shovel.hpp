@@ -1,9 +1,11 @@
 #ifndef __SHOVEL_HPP__
 # define __SHOVEL_HPP__
 
+# include "ATool.hpp"
+
 class Worker;
 
-class	Shovel {
+class	Shovel : ATool {
 	public:
 		Shovel();
 

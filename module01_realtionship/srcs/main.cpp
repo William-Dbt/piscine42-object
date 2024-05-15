@@ -54,6 +54,12 @@ int	main() {
 		jacques.takeShovel(shovel);
 
 		std::cout << jacques << std::endl;
+
+		std::cout << CLEAR;
+	}
+	std::cout << "------------------------------\n" << std::endl;
+	{
+
 	}
 	return 0;
 }

@@ -5,6 +5,10 @@ Shovel::Shovel(): _worker(nullptr), _numberOfUses(0) {
 	std::cout << "[Shovel] Default constructor called" << std::endl;
 }
 
+Shovel::~Shovel() {
+	std::cout << "[Shovel] Destructor called" << std::endl;
+}
+
 void	Shovel::use() {
 	if (this->_worker == nullptr) {
 		std::cout << "Warning: Shovel::use(): no worker have the shovel." << std::endl;
@@ -16,7 +20,7 @@ void	Shovel::use() {
 
 void	Shovel::setWorker(Worker* worker) {
 	if (this->_worker != nullptr)
-		this->_worker->removeShovel();
+		this->_worker->removeTool(*this);
 
 	this->_worker = worker;
 }

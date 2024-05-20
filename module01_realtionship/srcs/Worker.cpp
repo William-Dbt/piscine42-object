@@ -3,8 +3,6 @@
 
 Worker::Worker() {
 	std::cout << "[Worker] Default constructor" << std::endl;
-	this->_shovel = nullptr;
-
 	this->_position.x = 0;
 	this->_position.y = 0;
 	this->_position.z = 0;
@@ -15,8 +13,6 @@ Worker::Worker() {
 
 Worker::Worker(int x, int y, int z, int exp) {
 	std::cout << "[Worker] Given values constructor" << std::endl;
-	this->_shovel = nullptr;
-
 	this->_position.x = x;
 	this->_position.y = y;
 	this->_position.z = z;
@@ -27,17 +23,39 @@ Worker::Worker(int x, int y, int z, int exp) {
 
 Worker::~Worker() {
 	std::cout << "[Worker] Destructor called" << std::endl;
-	if (this->_shovel)
-		this->_shovel->setWorker(nullptr);
+
+	while (this->_toolsBag.size() > 0)
+		this->_toolsBag.front()->setWorker(nullptr);
 }
 
-void	Worker::takeShovel(Shovel& shovel) {
-	shovel.setWorker(this);
-	this->_shovel = &shovel;
+void	Worker::takeTool(ATool& tool) {
+	if (this->isWorkerHaveTool(tool)) {
+		std::cout << "[Worker] WARNING: already have tool" << std::endl;
+		return ;
+	}
+	tool.setWorker(this);
+	this->_toolsBag.push_front(&tool);
 }
 
-void	Worker::removeShovel() {
-	this->_shovel = nullptr;
+void	Worker::removeTool(ATool& tool) {
+	if (!this->isWorkerHaveTool(tool)) {
+		std::cout << "[Worker] WARNING: doesn't have the tool" << std::endl;
+		return ;
+	}
+	this->_toolsBag.remove(&tool);
+}
+
+bool	Worker::isWorkerHaveTool(ATool& tool) {
+	if (this->_toolsBag.size() == 0)
+		return false;
+
+	std::list<ATool*>::iterator	it;
+
+	for (it = this->_toolsBag.begin(); it != this->_toolsBag.end(); it++)
+		if ((*it) == &tool)
+			return true;
+
+	return false;
 }
 
 void	Worker::setPosition(int x, int y, int z) {
@@ -64,10 +82,6 @@ void	Worker::earnExp(int exp) {
 	}
 }
 
-const Shovel*	Worker::getShovel() const {
-	return this->_shovel;
-}
-
 const t_position&	Worker::getPosition() const {
 	return this->_position;
 }
@@ -88,7 +102,6 @@ std::ostream&	operator<<(std::ostream &stream, const Worker &worker) {
 	stream << "Statistics:\n";
 	stream << "  - Exp: " << wStats.exp << '\n';
 	stream << "  - Level: " << wStats.level << "\n";
-	stream << "Is worker using a shovel ? " << (worker.getShovel() != nullptr ? "Yes" : "No") << std::endl;
 	return stream;
 }
 

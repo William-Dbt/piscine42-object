@@ -1,14 +1,14 @@
-#ifndef __SHOVEL_HPP__
-# define __SHOVEL_HPP__
+#ifndef __HAMMER_HPP__
+# define __HAMMER_HPP__
 
 # include "ATool.hpp"
 
 class Worker;
 
-class	Shovel : public ATool {
+class	Hammer : public ATool {
 	public:
-		Shovel();
-		~Shovel();
+		Hammer();
+		~Hammer();
 
 		void	use();
 

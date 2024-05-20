@@ -1,7 +1,8 @@
 #ifndef __WORKER_HPP__
 # define __WORKER_HPP__
 
-# include "Shovel.hpp"
+# include <list>
+# include "ATool.hpp"
 
 typedef struct	Position {
 	int x;
@@ -20,18 +21,19 @@ class	Worker {
 		Worker(int x, int y, int z, int exp);
 		~Worker();
 
-		void	takeShovel(Shovel& shovel);
-		void	removeShovel();
+		void	takeTool(ATool&	tool);
+		void	removeTool(ATool& tool);
+
+		bool	isWorkerHaveTool(ATool& tool);
 
 		void	setPosition(int x, int y, int z);
 		void	earnExp(int exp);
 
-		const Shovel*		getShovel() const;
 		const t_position&	getPosition() const;
 		const t_statistic&	getStatistics() const;
 
 	private:
-		Shovel*	_shovel;
+		std::list<ATool*>	_toolsBag;
 
 		t_position	_position;
 		t_statistic	_statistics;

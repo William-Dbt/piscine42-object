@@ -5,7 +5,7 @@
 
 #define RED "\033[1;31m"
 #define BLUE "\033[1;34m"
-#define PURPLE "\033[1;35m"
+#define YELLOW "\033[1;35m"
 #define CLEAR "\033[0m"
 
 int	main() {
@@ -33,9 +33,9 @@ int	main() {
 
 	std::cout << CLEAR;
 	std::cout << "\n----------------------------------------\n" << std::endl;
+	std::cout << std::boolalpha;
 
 	{
-		std::cout << std::boolalpha;
 		std::cout << "➡️  Aggregation\n" << std::endl;
 
 		std::cout << BLUE;
@@ -69,7 +69,7 @@ int	main() {
 	{
 		std::cout << "➡️  Inherence part\n" << std::endl;
 
-		std::cout << PURPLE;
+		std::cout << YELLOW;
 		std::cout << "Create a worker" << std::endl;
 		Worker	blume(100, 100, 100, 10500);
 

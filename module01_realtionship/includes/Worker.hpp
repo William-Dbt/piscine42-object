@@ -2,7 +2,8 @@
 # define __WORKER_HPP__
 
 # include <list>
-# include "ATool.hpp"
+
+class	ATool;
 
 typedef struct	Position {
 	int x;
@@ -40,5 +41,7 @@ class	Worker {
 };
 
 std::ostream&	operator<<(std::ostream &stream, const Worker &worker);
+
+# include "ATool.hpp"
 
 #endif

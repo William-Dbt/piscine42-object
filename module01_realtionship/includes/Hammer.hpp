@@ -11,15 +11,6 @@ class	Hammer : public ATool {
 		~Hammer();
 
 		void	use();
-
-		void	setWorker(Worker* worker);
-
-		const Worker*	getWorker() const;
-
-	private:
-		Worker*	_worker;
-
-		int	_numberOfUses;
 };
 
 # include "Worker.hpp"

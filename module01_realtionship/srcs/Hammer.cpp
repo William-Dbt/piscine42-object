@@ -1,8 +1,8 @@
 #include <iostream>
 #include "Hammer.hpp"
 
-Hammer::Hammer(): _worker(nullptr), _numberOfUses(0) {
-	std::cout << "[Hammer] Default constructor called" << std::endl;
+Hammer::Hammer() {
+	std::cout << "[Hammer] Constructor called" << std::endl;
 }
 
 Hammer::~Hammer() {
@@ -16,15 +16,5 @@ void	Hammer::use() {
 	}
 	std::cout << "[Hammer] A worker is using me !" << std::endl;
 	this->_numberOfUses++;
-}
-
-void	Hammer::setWorker(Worker* worker) {
-	if (this->_worker != nullptr)
-		this->_worker->removeTool(*this);
-
-	this->_worker = worker;
-}
-
-const Worker*	Hammer::getWorker() const {
-	return this->_worker;
+	this->_worker->earnExp(10);
 }

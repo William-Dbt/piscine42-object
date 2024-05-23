@@ -5,7 +5,6 @@
 
 #define RED "\033[1;31m"
 #define BLUE "\033[1;34m"
-#define YELLOW "\033[1;35m"
 #define CLEAR "\033[0m"
 
 int	main() {
@@ -69,7 +68,7 @@ int	main() {
 	{
 		std::cout << "➡️  Inherence part\n" << std::endl;
 
-		std::cout << YELLOW;
+		std::cout << RED;
 		std::cout << "Create a worker" << std::endl;
 		Worker	blume(100, 100, 100, 10500);
 
@@ -97,5 +96,63 @@ int	main() {
 	}
 
 	std::cout << CLEAR;
+	std::cout << "\n----------------------------------------\n" << std::endl;
+
+	{
+		std::cout << "➡️  Association part\n" << std::endl;
+
+		std::cout << BLUE;
+		std::cout << "Create some workers" << std::endl;
+		Worker	toto(254, 118, -42, 54080);
+		Worker	titi(100, 240, -12, 43980);
+		Worker	tutu(764, 238, 250, 108756);
+
+		std::cout << toto << std::endl;
+		std::cout << titi << std::endl;
+		std::cout << tutu << std::endl;
+
+		std::cout << "Create three workshops" << std::endl;
+
+		Workshop	workshopUnn;
+		Workshop	workshopA("A");
+		Workshop	workshopB("B");
+
+		std::cout << "\nAssign to all worker a workshop with the workshop and by themselves\n" << std::endl;
+
+		toto.registerToWorkshop(workshopUnn);
+		workshopA.registerWorker(&titi);
+		tutu.registerToWorkshop(workshopB);
+
+		std::cout << "\nWorkers wants to work at workshopA" << std::endl;
+
+		toto.work(workshopA);
+		titi.work(workshopA);
+
+		std::cout << "\nFirst workshop forgot to register to workshopA" << std::endl;
+
+		toto.registerToWorkshop(workshopA);
+
+		std::cout << "\nWorkshopA is not happy of the work that has been done, they want to start a day of working" << std::endl;
+
+		workshopA.executeWorkDay();
+
+		std::cout << "\nWorkshopA is not happy of his workers, let's fired them" << std::endl;
+
+		workshopA.releaseWorker(&toto);
+		workshopA.releaseWorker(&titi);
+
+		std::cout << "\nLet's try to work to check if they are really released" << std::endl;
+
+		workshopA.executeWorkDay();
+		toto.work(workshopA);
+		titi.work(workshopA);
+
+		std::cout << "\nWorkshopA want to try with the third worker" << std::endl;
+
+		workshopA.registerWorker(&tutu);
+		workshopA.executeWorkDay();
+
+		std::cout << std::endl;
+	}
 	return 0;
 }

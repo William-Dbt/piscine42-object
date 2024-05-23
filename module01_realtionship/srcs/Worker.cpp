@@ -58,6 +58,51 @@ bool	Worker::isWorkerHaveTool(ATool& tool) {
 	return false;
 }
 
+void	Worker::registerToWorkshop(Workshop& workshop) {
+	if (this->isWorkerInWorkshop(workshop)) {
+		std::cerr << "[Worker] WARNING: already in workshop" << std::endl;
+		return ;
+	}
+	this->_workshops.push_back(&workshop);
+	if (!workshop.isWorkerRegistred(this))
+		workshop.registerWorker(this);
+}
+
+void	Worker::releaseWorkshop(Workshop& workshop) {
+	if (!this->isWorkerInWorkshop(workshop)) {
+		std::cerr << "[Worker] WARNING: isn't in workshop" << std::endl;
+		return ;
+	}
+	this->_workshops.remove(&workshop);
+	if (workshop.isWorkerRegistred(this))
+		workshop.releaseWorker(this);
+}
+
+bool	Worker::isWorkerInWorkshop(Workshop& workshop) {
+	if (this->_workshops.size() == 0)
+		return false;
+
+	std::list<Workshop*>::iterator	it;
+
+	for (it = this->_workshops.begin(); it != this->_workshops.end(); it++)
+		if ((*it) == &workshop)
+			return true;
+
+	return false;
+}
+
+void	Worker::work(Workshop& workshop) {
+	if (this->_workshops.size() == 0) {
+		std::cerr << "[Worker] WARNING: hasn't registred to a workshop yet, worker can't work" << std::endl;
+		return ;
+	}
+	if (!this->isWorkerInWorkshop(workshop)) {
+		std::cerr << "[Worker] WARNING: isn't registred to workshop \'" << workshop.getName() <<  "\', can't start working" << std::endl;
+		return ;
+	}
+	std::cout << "[Worker] Initiate work at workshop " << workshop.getName() << std::endl;
+}
+
 void	Worker::setPosition(int x, int y, int z) {
 	std::cout << "[Worker] New position ("
 			  << x << ", " << y << ", " << z << ')' << std::endl;
@@ -104,4 +149,3 @@ std::ostream&	operator<<(std::ostream &stream, const Worker &worker) {
 	stream << "  - Level: " << wStats.level << "\n";
 	return stream;
 }
-

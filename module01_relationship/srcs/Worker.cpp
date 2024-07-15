@@ -25,7 +25,7 @@ Worker::~Worker() {
 	std::cout << "[Worker] Destructor called" << std::endl;
 
 	while (this->_toolsBag.size() > 0)
-		this->_toolsBag.front()->setWorker(nullptr);
+		this->_toolsBag.front()->setWorker(NULL);
 }
 
 void	Worker::takeTool(ATool& tool) {

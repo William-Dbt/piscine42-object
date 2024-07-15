@@ -14,7 +14,7 @@ Workshop::~Workshop() {
 }
 
 void	Workshop::registerWorker(Worker* worker) {
-	if (worker == nullptr)
+	if (worker == NULL)
 		return ;
 
 	if (this->isWorkerRegistred(worker)) {
@@ -29,24 +29,24 @@ void	Workshop::registerWorker(Worker* worker) {
 }
 
 void	Workshop::releaseWorker(Worker* worker) {
-	if (worker == nullptr)
+	if (worker == NULL)
 		return ;
 
 	if (!this->isWorkerRegistred(worker)) {
 		std::cerr << "[Workshop \'" << this->_name << "\'] WARNING: worker isn't registred" << std::endl;
 		return ;
 	}
-	if (worker->isWorkerInWorkshop(*this)) {
-		std::cout << "titi" << std::endl;
+	if (worker->isWorkerInWorkshop(*this))
 		worker->releaseWorkshop(*this);
-	}
 
-	this->_workers.remove(worker);
-	std::cout << "[Workshop \'" << this->_name << "\'] A worker has been released." << std::endl;
+	if (this->isWorkerRegistred(worker)) {
+		this->_workers.remove(worker);
+		std::cout << "[Workshop \'" << this->_name << "\'] A worker has been released." << std::endl;
+	}
 }
 
 bool	Workshop::isWorkerRegistred(Worker* worker) {
-	if (worker == nullptr)
+	if (worker == NULL)
 		return false;
 
 	std::list<Worker*>::iterator	it;

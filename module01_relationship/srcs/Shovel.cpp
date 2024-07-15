@@ -10,7 +10,7 @@ Shovel::~Shovel() {
 }
 
 void	Shovel::use() {
-	if (this->_worker == nullptr) {
+	if (this->_worker == NULL) {
 		std::cout << "Warning: Shovel::use(): no worker have the shovel." << std::endl;
 		return ;
 	}

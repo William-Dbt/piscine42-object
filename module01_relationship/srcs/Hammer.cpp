@@ -10,7 +10,7 @@ Hammer::~Hammer() {
 }
 
 void	Hammer::use() {
-	if (this->_worker == nullptr) {
+	if (this->_worker == NULL) {
 		std::cout << "Warning: Hammer::use(): no worker have the hammer." << std::endl;
 		return ;
 	}

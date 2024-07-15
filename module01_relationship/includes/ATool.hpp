@@ -7,7 +7,7 @@ class	ATool {
 	public:
 		ATool() {
 			std::cout << "[ATool] Constructor called" << std::endl;
-			this->_worker = nullptr;
+			this->_worker = NULL;
 			this->_numberOfUses = 0;
 		}
 
@@ -20,7 +20,7 @@ class	ATool {
 		virtual void	use() = 0;
 
 		void	setWorker(Worker* worker) {
-			if (this->_worker != nullptr)
+			if (this->_worker != NULL)
 				this->_worker->removeTool(*this);
 
 			this->_worker = worker;

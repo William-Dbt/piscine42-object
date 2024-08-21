@@ -16,4 +16,8 @@ This module will introduce you to how variables/attributes can be linked togethe
 
 ***Module 02***: UML.  
 This module will introduce you to a way to represent graphicaly software architecture.  
-To help me doing this exercise, I used the website https://online.visual-paradigm.com/diagrams/.
+To help me doing this exercise, I used the website https://online.visual-paradigm.com/diagrams/.  
+
+***Module 03***: SOLID.  
+In this module, we'll discover the five SOLID principles.  
+	- ex00: [S]olid - Single responsability  

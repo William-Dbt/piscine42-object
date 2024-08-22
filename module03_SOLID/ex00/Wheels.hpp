@@ -17,7 +17,7 @@ class	Wheels {
 			this->_turnAngle = turnAngle;
 		}
 
-		float	getTurnAngle() const {
+		const float&	getTurnAngle() const {
 			return this->_turnAngle;
 		}
 

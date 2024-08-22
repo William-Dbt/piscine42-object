@@ -17,7 +17,7 @@ class	Brakes {
 			this->_pressionForce = pression;
 		}
 
-		float	getPression() const {
+		const float&	getPression() const {
 			return this->_pressionForce;
 		}
 

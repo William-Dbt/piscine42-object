@@ -30,7 +30,7 @@ class	Motor {
 			std::cout << "[MOTOR] Engine is stopped." << std::endl;
 		}
 
-		int	getEngineStatus() const {
+		const int&	getEngineStatus() const {
 			return this->_engineStatus;
 		}
 

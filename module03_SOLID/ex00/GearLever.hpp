@@ -28,11 +28,11 @@ class	GearLever {
 			this->_gearsName[FIFTH] = "Fifth";
 		}
 
-		int	getActiveLevelGear() const {
+		const int&	getActiveLevelGear() const {
 			return this->_level;
 		}
 
-		std::string	getActiveLevelGearName() {
+		const std::string&	getActiveLevelGearName() {
 			return this->_gearsName[this->_level];
 		}
 

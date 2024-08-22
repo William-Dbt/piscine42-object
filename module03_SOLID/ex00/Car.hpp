@@ -88,27 +88,27 @@ class	Car {
 			this->_brakes.applyPression(100.0);
 		}
 
-		int	getMotorStatus() {
+		const int&	getMotorStatus() const {
 			return this->_motor.getEngineStatus();
 		}
 
-		int	getSpeed() {
+		const int&	getSpeed() const {
 			return this->_speed;
 		}
 
-		float	getBrakePressure() {
+		const float&	getBrakePressure() const {
 			return this->_brakes.getPression();
 		}
 
-		int	getGearLevel() {
+		const int&	getGearLevel() const {
 			return this->_gearLever.getActiveLevelGear();
 		}
 
-		std::string	getGearLevelName() {
+		const std::string&	getGearLevelName() {
 			return this->_gearLever.getActiveLevelGearName();
 		}
 
-		float	getWheelsAngle() {
+		const float&	getWheelsAngle() const {
 			return this->_wheels.getTurnAngle();
 		}
 

@@ -21,3 +21,4 @@ To help me doing this exercise, I used the website https://online.visual-paradig
 ***Module 03***: SOLID.  
 In this module, we'll discover the five SOLID principles.  
 	- ex00: [S]olid - Single responsability  
+	- ex01: s[O]lid - Opened/Closed  

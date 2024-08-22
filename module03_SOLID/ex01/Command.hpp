@@ -12,8 +12,14 @@
 // _articles<std::string, std::pair<int, int> > refers to the name of the product, the quantity and the price
 class	Command {
 	public:
-		Command(const std::string client,
-				const std::map<std::string, std::pair<int, int> >	articles)
+		Command() {
+			this->_id = this->_numberOfCommands++;
+			this->_client = "Unknown";
+			this->_date = time(NULL);
+		}
+
+		Command(const std::string& client,
+				const std::map<std::string, std::pair<int, int> >&	articles)
 		{
 			this->_id = this->_numberOfCommands++;
 			this->_date = time(NULL);
@@ -42,7 +48,7 @@ class	Command {
 			return this->_id;
 		}
 
-		const char*	getDate() const {
+		const char*	getStringDate() const {
 			return ctime(&this->_date);
 		}
 
@@ -50,7 +56,7 @@ class	Command {
 			return this->_client;
 		}
 
-	private:
+	protected:
 		static int	_numberOfCommands;
 
 		int											_id;
@@ -62,13 +68,13 @@ class	Command {
 // Initialize the number of commands to 0. this variable will be used to set the ids of the commands.
 int	Command::_numberOfCommands = 0;
 
-std::ostream&	operator<<(std::ostream &stream, const Command &command) {
+std::ostream&	operator<<(std::ostream &stream, Command &command) {
 	stream << "----- COMMAND INFOS -----\n";
 	stream << "- Id : " << command.getId() << '\n';
-	stream << "- Date : " << command.getDate();
+	stream << "- Date : " << command.getStringDate();
 	stream << "- Client : " << command.getClient() << '\n';
+	stream << "- Total price of the command : " << command.get_total_price() << '\n';
 	stream << "-------------------------" << std::endl;
-
 	return stream;
 }
 

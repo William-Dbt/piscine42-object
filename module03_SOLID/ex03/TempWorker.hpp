@@ -3,6 +3,8 @@
 
 # include "Employee.hpp"
 
+class	EmployeeManager;
+
 class	TempWorker: public Employee {
 	public:
 		TempWorker() {
@@ -16,22 +18,30 @@ class	TempWorker: public Employee {
 		}
 
 		virtual int	executeWorkday() {
-			std::cout << "[Workday] Employee " << this->_name << " is working today !" << std::endl;
-			this->_hoursMade += 7;
-			return 7;
+			std::cout << "[TempWorker] Employee " << this->_name << " is working today !" << std::endl;
+			this->_hoursMade += HOURS_PER_DAY_WORKED;
+			return HOURS_PER_DAY_WORKED;
 		}
 
-		virtual void mobilizeEmployee(const int& hours) {
+		// virtual int	calculatePayroll() {
+		// 	return (this->_hoursMade * this->_hourlyValue);
+		// }
+
+		friend class EmployeeManager;
+
+	protected:
+		int	_hoursMade;
+
+		void mobilizeEmployee(const int& hours) {
 			if (hours <= 0) {
-				std::cerr << "[mobilizeEmployee] ERROR: Employee " << this->_name << " can't work less than 1 hour !" << std::endl;
+				std::cerr << "[TempWorker] ERROR(mobilizeEmployee): employee " << this->_name << " can't work less than 1 hour !" << std::endl;
 				return ;
 			}
-			std::cout << "[mobilizeEmployee] Employee " << this->_name << " is working today for " << hours << " hours !" << std::endl;
+			std::cout << "[TempWorker] Employee " << this->_name << " has been mobilized today for " << hours << " hours !" << std::endl;
 			this->_hoursMade += hours;
 		}
-
-	private:
-		int	_hoursMade;
 };
+
+# include "EmployeeManager.hpp"
 
 #endif

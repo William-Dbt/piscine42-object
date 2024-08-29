@@ -7,15 +7,23 @@ int	main() {
 
 	EmployeeManager	manager("Kevin");
 
-	std::cout << manager;
+	std::cout << manager << std::endl;
 
-	Employee*	firstEmployee = new TempWorker();
-	Employee*	secondEmployee = new TempWorker("toto", 9);
+	std::cout << "Create three TempWorker, one by default and another one named Titi and another one named Toto who will be paid 13€/h.\n" << std::endl;
 
-	manager.addEmployee(firstEmployee);
-	manager.addEmployee(secondEmployee);
+	Employee*	tmpWorkerUnknown = new TempWorker();
+	Employee*	tmpWorkerTiti = new TempWorker("Titi");
+	Employee*	tmpWorkerToto = new TempWorker("Toto", 13);
 
-	std::cout << manager;
+	manager.addEmployee(tmpWorkerUnknown);
+	manager.addEmployee(tmpWorkerTiti);
+	manager.addEmployee(tmpWorkerToto);
 
-	firstEmployee->mobilizeEmployee(5);
+	std::cout << manager << std::endl;
+
+	std::cout << "Let's initiate a workday" << std::endl;
+	manager.executeWorkday();
+
+	std::cout << "\nToto need more cash before leaving the company, the manager will mobilize him for 9 more hours" << std::endl;
+	manager.mobilizeEmployee(tmpWorkerToto, 9);
 }

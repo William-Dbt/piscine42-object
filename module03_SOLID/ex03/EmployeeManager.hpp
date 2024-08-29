@@ -4,6 +4,7 @@
 # include <iostream>
 # include <set>
 # include "Employee.hpp"
+# include "TempWorker.hpp"
 
 class	EmployeeManager {
 	public:
@@ -22,7 +23,7 @@ class	EmployeeManager {
 			}
 			std::pair<std::set<Employee*>::iterator, bool>	isEmployeeAdded;
 
-			isEmployeeAdded = this->_managedEmployeesList.insert(employee);
+			isEmployeeAdded = this->_employeesList.insert(employee);
 			if (!isEmployeeAdded.second)
 				std::cerr << "[EmployeeManager] ERROR(addEmployee): employee already added in the list of the manager." << std::endl;
 		}
@@ -32,40 +33,61 @@ class	EmployeeManager {
 				std::cerr << "[EmployeeManager] ERROR(removeEmployee): an error occured with the employee." << std::endl;
 				return ;
 			}
-			this->_managedEmployeesList.erase(employee);
+			this->_employeesList.erase(employee);
 		}
 
 		void	executeWorkday() {
 			std::set<Employee*>::iterator	it;
 
-			for (it = this->_managedEmployeesList.begin(); it != this->_managedEmployeesList.end(); it++) {
+			for (it = this->_employeesList.begin(); it != this->_employeesList.end(); it++) {
 				if ((*it) != NULL)
 					(*it)->executeWorkday();
 				else
-					this->_managedEmployeesList.erase(it);
+					this->_employeesList.erase(it);
 			}
 		}
+
+		// TODO: Save hours and day per employee for each workday executed to calculate payroll
 
 		// void	calculatePayroll() {
 		// 	std::set<Employee*>::iterator	it;
 
-		// 	std::cout << "----- Payroll for the month -----\n";
-		// 	for (it = this->_managedEmployeesList.begin(); it != this->_managedEmployeesList.end(); it++) {
-		// 		std::cout << (*it)->getName()
-		// 	}
+		// 	std::cout << "----- Payroll for the month for each employee -----\n";
+		// 	for (it = this->_employeesList.begin(); it != this->_employeesList.end(); it++)
+		// 		std::cout << "- " <<(*it)->getName() << ": " << (*it)->calculatePayroll() << "€ for ";
+
+		// 	std::cout << "---------------------------------------------------" << std::endl;
 		// }
+
+		void	mobilizeEmployee(Employee* employee, const int& hours) {
+			if (!employee) {
+				std::cerr << "[EmployeeManager] ERROR(mobilizeEmployee): an error occured with the employee." << std::endl;
+				return ;
+			}
+			if (this->_employeesList.find(employee) == this->_employeesList.end()) {
+				std::cerr << "[EmployeeManager] ERROR(mobilizeEmployee): you are not in charge of the employee " << employee->getName() << " !" << std::endl;
+				return ;
+			}
+
+			TempWorker*	tempEmployee = dynamic_cast<TempWorker*>(employee);
+
+			if (tempEmployee)
+				tempEmployee->mobilizeEmployee(hours);
+			else
+				std::cerr << "[EmployeeManager] ERROR(mobilizeEmployee): employee " << employee->getName() << " is not a tempWorker ! He can't be mobilized." << std::endl;
+		}
 
 		const std::string&	getName() const {
 			return this->_name;
 		}
 
 		const std::set<Employee*>&	getManagedEmployees() const {
-			return this->_managedEmployeesList;
+			return this->_employeesList;
 		}
 
 	private:
 		std::string			_name;
-		std::set<Employee*>	_managedEmployeesList;
+		std::set<Employee*>	_employeesList;
 };
 
 std::ostream&	operator<<(std::ostream &stream, const EmployeeManager &employeeManager) {

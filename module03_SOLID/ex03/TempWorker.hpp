@@ -17,20 +17,20 @@ class	TempWorker: public Employee {
 			this->_hoursMade = 0;
 		}
 
-		virtual int	executeWorkday() {
-			std::cout << "[TempWorker] Employee " << this->_name << " is working today !" << std::endl;
-			this->_hoursMade += HOURS_PER_DAY_WORKED;
-			return HOURS_PER_DAY_WORKED;
-		}
-
-		// virtual int	calculatePayroll() {
-		// 	return (this->_hoursMade * this->_hourlyValue);
-		// }
-
 		friend class EmployeeManager;
 
 	protected:
-		int	_hoursMade;
+		unsigned int	_hoursMade;
+
+		virtual int	executeWorkday() {
+			std::cout << "[TempWorker] Employee " << this->_name << " is working today !" << std::endl;
+			this->_hoursMade += HOURS_IN_SINGLE_DAY;
+			return HOURS_IN_SINGLE_DAY;
+		}
+
+		virtual unsigned int	calculatePayroll() {
+			return 2;
+		}
 
 		void mobilizeEmployee(const int& hours) {
 			if (hours <= 0) {

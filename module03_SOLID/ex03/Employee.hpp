@@ -5,7 +5,32 @@
 # include <string>
 
 # define DEFAULT_HOURLY 11
-# define HOURS_PER_DAY_WORKED 7
+# define HOURS_IN_SINGLE_DAY 7
+
+class	EmployeeManager;
+
+class	HoursNotWorked {
+	public:
+		HoursNotWorked() {
+			this->_hoursNotWorked = 0;
+		}
+
+		const unsigned int&	getHoursNotWorked() const {
+			return this->_hoursNotWorked;
+		}
+
+	protected:
+		unsigned int	_hoursNotWorked;
+
+		void	takeTimeOff(const int& hours) {
+			if (hours < HOURS_IN_SINGLE_DAY) {
+				std::cerr << "[takeTimeOff] ERROR: the minimum hours to request a time off is " << HOURS_IN_SINGLE_DAY << " hours !" << std::endl;
+				return ;
+			}
+			std::cout << "[takeTimeOff] An employee has requested " << hours << " hours of time off." << std::endl;
+			this->_hoursNotWorked += hours;
+		}
+};
 
 class	Employee {
 	public:
@@ -21,24 +46,25 @@ class	Employee {
 
 		virtual ~Employee() {}
 
-		// We make this method pure virtual for the classes that will inherit from Employee class
-		// and that will managed in their way the executeWorkday() function
-		virtual int	executeWorkday() = 0;
-
-		// We'll use this method to calculate the amount of money we have to give to each employee
-		// virtual int	calculatePayroll() = 0;
-
 		const std::string&	getName() const {
 			return this->_name;
 		}
 
-		const int&	getHourlyValue() const {
+		const unsigned int&	getHourlyValue() const {
 			return this->_hourlyValue;
 		}
 
+		friend class	EmployeeManager;
+
 	protected:
-		std::string	_name;
-		int			_hourlyValue;
+		std::string		_name;
+		unsigned int	_hourlyValue;
+
+		virtual int	executeWorkday() = 0;
+
+		virtual unsigned int	calculatePayroll() = 0;
 };
+
+# include "EmployeeManager.hpp"
 
 #endif

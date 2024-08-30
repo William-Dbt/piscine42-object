@@ -5,14 +5,18 @@
 # include <set>
 # include "Employee.hpp"
 # include "TempWorker.hpp"
+# include "ContractEmployee.hpp"
+# include "Apprentice.hpp"
 
 class	EmployeeManager {
 	public:
 		EmployeeManager() {
+			this->_workdaysExecuted = 0;
 			this->_name = "Unknown";
 		}
 
 		EmployeeManager(const std::string& name) {
+			this->_workdaysExecuted = 0;
 			this->_name = name;
 		}
 
@@ -45,19 +49,18 @@ class	EmployeeManager {
 				else
 					this->_employeesList.erase(it);
 			}
+			this->_workdaysExecuted++;
 		}
 
-		// TODO: Save hours and day per employee for each workday executed to calculate payroll
+		void	calculatePayroll() {
+			std::set<Employee*>::iterator	it;
 
-		// void	calculatePayroll() {
-		// 	std::set<Employee*>::iterator	it;
+			std::cout << "----- Payroll for the month for each employee -----\n";
+			for (it = this->_employeesList.begin(); it != this->_employeesList.end(); it++)
+				std::cout << "- " <<(*it)->getName() << ": " << (*it)->calculatePayroll() << "€ for ";
 
-		// 	std::cout << "----- Payroll for the month for each employee -----\n";
-		// 	for (it = this->_employeesList.begin(); it != this->_employeesList.end(); it++)
-		// 		std::cout << "- " <<(*it)->getName() << ": " << (*it)->calculatePayroll() << "€ for ";
-
-		// 	std::cout << "---------------------------------------------------" << std::endl;
-		// }
+			std::cout << "---------------------------------------------------" << std::endl;
+		}
 
 		void	mobilizeEmployee(Employee* employee, const int& hours) {
 			if (!employee) {
@@ -77,6 +80,47 @@ class	EmployeeManager {
 				std::cerr << "[EmployeeManager] ERROR(mobilizeEmployee): employee " << employee->getName() << " is not a tempWorker ! He can't be mobilized." << std::endl;
 		}
 
+		void	giveTimeOffToEmployee(Employee* employee, const int& hours) {
+			if (!employee) {
+				std::cerr << "[EmployeeManager] ERROR(giveTimeOffToEmployee): an error occured with the employee." << std::endl;
+				return ;
+			}
+			if (this->_employeesList.find(employee) == this->_employeesList.end()) {
+				std::cerr << "[EmployeeManager] ERROR(giveTimeOffToEmployee): you are not in charge of the employee " << employee->getName() << " !" << std::endl;
+				return ;
+			}
+
+			ContractEmployee*	ctrEmployee = dynamic_cast<ContractEmployee*>(employee);
+			Apprentice*			apprentice = dynamic_cast<Apprentice*>(employee);
+
+			if (ctrEmployee || apprentice) {
+				if (ctrEmployee)
+					ctrEmployee->takeTimeOff(hours);
+				else
+					apprentice->takeTimeOff(hours);
+			}
+			else
+				std::cerr << "[EmployeeManager] ERROR(giveTimeOffToEmployee): employee " << employee->getName() << " is not a contractEmployee or an apprentice ! He can't ask for time off." << std::endl;
+		}
+
+		void	registerSchoolHoursForApprentice(Employee* employee, const int& hours) {
+			if (!employee) {
+				std::cerr << "[EmployeeManager] ERROR(registerSchoolHoursForApprentice): an error occured with the employee." << std::endl;
+				return ;
+			}
+			if (this->_employeesList.find(employee) == this->_employeesList.end()) {
+				std::cerr << "[EmployeeManager] ERROR(registerSchoolHoursForApprentice): you are not in charge of the employee " << employee->getName() << " !" << std::endl;
+				return ;
+			}
+
+			Apprentice*	apprentice = dynamic_cast<Apprentice*>(employee);
+
+			if (apprentice)
+				apprentice->registerSchoolHours(hours);
+			else
+				std::cerr << "[EmployeeManager] ERROR(registerSchoolHoursForApprentice): employee " << employee->getName() << " is not an apprentice ! He can't register school hours." << std::endl;
+		}
+
 		const std::string&	getName() const {
 			return this->_name;
 		}
@@ -86,6 +130,7 @@ class	EmployeeManager {
 		}
 
 	private:
+		unsigned int		_workdaysExecuted;
 		std::string			_name;
 		std::set<Employee*>	_employeesList;
 };

@@ -17,18 +17,18 @@ class	Apprentice: public Employee, public HoursNotWorked {
 			this->_schoolHours = 0;
 		}
 
+		const unsigned int&	getSchoolHours() const {
+			return this->_schoolHours;
+		}
+
 		friend class	EmployeeManager;
 
 	private:
 		unsigned int	_schoolHours;
 
-		virtual int	executeWorkDay() {
+		virtual int	executeWorkday() {
 			std::cout << "[Apprentice] Employee " << this->_name << " is working today !" << std::endl;
 			return HOURS_IN_SINGLE_DAY;
-		}
-
-		virtual unsigned int	calculatePayroll() {
-			return 3;
 		}
 
 		void	registerSchoolHours(const int& hours) {

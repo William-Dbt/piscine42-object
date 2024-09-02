@@ -17,6 +17,10 @@ class	TempWorker: public Employee {
 			this->_hoursMade = 0;
 		}
 
+		const unsigned int&	getHoursMade() const {
+			return this->_hoursMade;
+		}
+
 		friend class EmployeeManager;
 
 	protected:
@@ -26,10 +30,6 @@ class	TempWorker: public Employee {
 			std::cout << "[TempWorker] Employee " << this->_name << " is working today !" << std::endl;
 			this->_hoursMade += HOURS_IN_SINGLE_DAY;
 			return HOURS_IN_SINGLE_DAY;
-		}
-
-		virtual unsigned int	calculatePayroll() {
-			return 2;
 		}
 
 		void mobilizeEmployee(const int& hours) {

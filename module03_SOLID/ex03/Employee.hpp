@@ -61,8 +61,6 @@ class	Employee {
 		unsigned int	_hourlyValue;
 
 		virtual int	executeWorkday() = 0;
-
-		virtual unsigned int	calculatePayroll() = 0;
 };
 
 # include "EmployeeManager.hpp"

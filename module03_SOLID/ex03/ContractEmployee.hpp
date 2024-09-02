@@ -21,10 +21,6 @@ class	ContractEmployee: public Employee, public HoursNotWorked {
 			std::cout << "[ContractEmployee] Employee " << this->_name << " is working today !" << std::endl;
 			return HOURS_IN_SINGLE_DAY;
 		}
-
-		virtual unsigned int	calculatePayroll() {
-			return 1;
-		}
 };
 
 # include "EmployeeManager.hpp"

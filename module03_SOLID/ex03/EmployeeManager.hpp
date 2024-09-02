@@ -53,12 +53,50 @@ class	EmployeeManager {
 		}
 
 		void	calculatePayroll() {
+			TempWorker*			isTempWorker;
+			ContractEmployee*	isContractEmployee;
+			Apprentice*			isApprentice;
+
 			std::set<Employee*>::iterator	it;
 
-			std::cout << "----- Payroll for the month for each employee -----\n";
-			for (it = this->_employeesList.begin(); it != this->_employeesList.end(); it++)
-				std::cout << "- " <<(*it)->getName() << ": " << (*it)->calculatePayroll() << "€ for ";
+			int	totalPayroll;
 
+			std::cout << "----- Payroll for the month for each employee -----\n";
+			for (it = this->_employeesList.begin(); it != this->_employeesList.end(); it++) {
+				std::cout << "- " <<(*it)->getName() << ": ";
+				isTempWorker = dynamic_cast<TempWorker*>((*it));
+				if (isTempWorker) {
+					totalPayroll = isTempWorker->getHourlyValue() * isTempWorker->getHoursMade();
+					std::cout << totalPayroll << "€ with " << isTempWorker->getHoursMade() << "h made.\n";
+					continue ;
+				}
+
+				isContractEmployee = dynamic_cast<ContractEmployee*>((*it));
+				if (isContractEmployee) {
+					totalPayroll = (this->_workdaysExecuted * HOURS_IN_SINGLE_DAY \
+								- isContractEmployee->getHoursNotWorked()) \
+								* isContractEmployee->getHourlyValue();
+					
+					if (totalPayroll < 0)
+						totalPayroll = 0;
+
+					std::cout << totalPayroll << "€ with " << this->_workdaysExecuted << " days worked and " << isContractEmployee->getHoursNotWorked() << " hours not worked.\n";
+					continue ;
+				}
+
+				isApprentice = dynamic_cast<Apprentice*>((*it));
+				if (isApprentice) {
+					totalPayroll = ((this->_workdaysExecuted * HOURS_IN_SINGLE_DAY \
+								- isApprentice->getHoursNotWorked() \
+								- isApprentice->getSchoolHours()) * isApprentice->getHourlyValue())
+								+ isApprentice->getSchoolHours() * (isApprentice->getHourlyValue() / 2);
+
+					std::cout << totalPayroll << "€ with " << this->_workdaysExecuted << " days worked and ";
+					std::cout << isApprentice->getHoursNotWorked() << " hours not worked and ";
+					std::cout << isApprentice->getSchoolHours() << " hours at school.\n";
+					continue ;
+				}
+			}
 			std::cout << "---------------------------------------------------" << std::endl;
 		}
 

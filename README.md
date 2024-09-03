@@ -23,3 +23,5 @@ In this module, we'll discover the five SOLID principles.
 	- ex00: [S]olid - Single responsability  
 	- ex01: s[O]lid - Opened/Closed  
 	- ex02: so[L]id - Liskov substitution  
+	- ex03: sol[I]d - Interface segregation  
+	- ex04:  soli[D] - Dependency inversion  

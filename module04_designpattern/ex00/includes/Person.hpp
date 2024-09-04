@@ -9,9 +9,11 @@ class	Person {
 	public:
 		Person(const std::string& p_name);
 
-		Room*	getCurrentRoom() {
-			return this->_currentRoom;
-		}
+		void	setCurrentRoom(Room* room);
+
+		const std::string&	getName() const;
+
+		const Room*	getCurrentRoom() const;
 
 	private:
 		std::string	_name;

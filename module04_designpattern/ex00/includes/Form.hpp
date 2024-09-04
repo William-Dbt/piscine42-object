@@ -10,7 +10,9 @@ enum class	FormType {
 
 class	Form {
 	public:
-		Form(FormType p_formType);
+		Form(FormType p_formType) {
+			this->_formType = p_formType;
+		}
 
 		virtual void	execute() = 0;
 

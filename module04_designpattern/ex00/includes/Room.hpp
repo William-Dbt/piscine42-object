@@ -14,6 +14,8 @@ class	Room {
 
 		void	printOccupants();
 
+		const long long& getId() const;
+
 	private:
 		long long	ID;
 		std::vector<Person*>	_occupants;

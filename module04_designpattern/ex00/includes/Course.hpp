@@ -1,6 +1,9 @@
 #ifndef __COURSE_HPP__
 # define __COURSE_HPP__
 
+# define NB_CLASS_TO_GRADUATE		15
+# define MAX_NB_STUDENTS_PER_CLASS	24
+
 # include <string>
 # include <vector>
 # include "persons/staffs/Professor.hpp"
@@ -12,6 +15,10 @@ class	Course {
 
 		void	assign(Professor* p_professor);
 		void	subscribe(Student* p_student);
+
+		bool	isStudentInCourse(const Student* student);
+
+		const Professor*	getResponsable() const;
 
 	private:
 		std::string				_name;

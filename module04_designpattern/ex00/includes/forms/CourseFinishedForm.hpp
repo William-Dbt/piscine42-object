@@ -6,6 +6,10 @@
 
 class	CourseFinishedForm: public Form {
 	public:
+		CourseFinishedForm(FormType p_formType) {
+			this->_formType = p_formType;
+		}
+
 		virtual void	execute() {
 			std::cout << "[CourseFinishedForm] form executed." << std::endl;
 		}

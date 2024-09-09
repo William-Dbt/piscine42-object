@@ -6,6 +6,10 @@
 
 class	SubscriptionToCourseForm: public Form {
 	public:
+		SubscriptionToCourseForm(FormType p_formType) {
+			this->_formType = p_formType;
+		}
+
 		virtual void	execute() {
 			std::cout << "[SubscriptionToCourseForm] form executed." << std::endl;
 		}

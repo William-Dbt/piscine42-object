@@ -16,7 +16,9 @@ class	Form {
 
 		virtual void	execute() = 0;
 
-	private:
+	protected:
+		Form() {}
+
 		FormType	_formType;
 };
 

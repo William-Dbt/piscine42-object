@@ -4,9 +4,13 @@
 # include <vector>
 # include "../Room.hpp"
 # include "../Form.hpp"
+# include "../persons/staffs/Secretary.hpp"
 
 class	SecretarialOffice: public Room {
-	private:
+	public:
+		friend class Secretary;
+
+	protected:
 		std::vector<Form*>	_archivedForms;
 };
 

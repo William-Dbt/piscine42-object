@@ -6,7 +6,9 @@
 
 class	Headmaster: public Staff {
 	public:
-		void	receiveForm(Form* p_form);
+		void	receiveForm(Form* p_form) {
+			this->_formToValidate.push_back(p_form);
+		}
 
 	private:
 		std::vector<Form*>	_formToValidate;

@@ -9,8 +9,15 @@ class	Course;
 
 class	Student: public Person {
 	public:
-		void	attendClass(Classroom* p_classroom);
-		void	exitClass();
+		void	attendClass(Classroom* p_classroom) {
+			if (p_classroom->canEnter(this))
+				p_classroom->enter(this);
+		}
+
+		void	exitClass() {
+			this->_currentRoom->exit(this);
+		}
+
 		void	graduate(Course* p_course);
 
 	private:

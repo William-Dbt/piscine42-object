@@ -4,20 +4,24 @@
 # include <vector>
 # include "Person.hpp"
 
+typedef std::vector<Person*>::iterator	ite_occupants;
+
 class	Room {
 	public:
 		Room();
 
-		bool	canEnter(Person* person);
+		virtual bool	canEnter(Person* person);
+
 		void	enter(Person* person);
 		void	exit(Person* person);
 
 		void	printOccupants();
+		bool	isPersonInRoom(Person* person);
 
 		const long long& getId() const;
 
-	private:
-		long long	ID;
+	protected:
+		static long long		ID;
 		std::vector<Person*>	_occupants;
 };
 

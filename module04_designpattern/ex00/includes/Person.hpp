@@ -15,7 +15,7 @@ class	Person {
 
 		const Room*	getCurrentRoom() const;
 
-	private:
+	protected:
 		std::string	_name;
 		Room*		_currentRoom;
 };

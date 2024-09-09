@@ -18,6 +18,7 @@ class	Course {
 
 		bool	isStudentInCourse(const Student* student);
 
+		const std::string&	getName() const;
 		const Professor*	getResponsable() const;
 
 	private:

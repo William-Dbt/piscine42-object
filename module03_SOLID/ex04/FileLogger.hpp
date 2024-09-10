@@ -10,7 +10,7 @@
 class	FileLogger: public ILogger {
 	public:
 		FileLogger(const std::string& filePath, const std::string& header = ""): _header(header) {
-			this->_file.open(filePath);
+			this->_file.open(filePath.c_str());
 			if (!this->_file.is_open())
 				std::cerr << "[FileLogger] ERROR: cannot open file " << filePath << std::endl;
 		}

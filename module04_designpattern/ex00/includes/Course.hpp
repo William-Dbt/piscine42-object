@@ -6,8 +6,9 @@
 
 # include <string>
 # include <vector>
-# include "persons/staffs/Professor.hpp"
 # include "persons/Student.hpp"
+
+class	Professor;
 
 class	Course {
 	public:
@@ -29,5 +30,7 @@ class	Course {
 		int	_numberOfClassToGraduate;
 		int	_maximumNumberOfStudents;
 };
+
+# include "persons/staffs/Professor.hpp"
 
 #endif

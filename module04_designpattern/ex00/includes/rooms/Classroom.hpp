@@ -2,25 +2,25 @@
 # define __CLASSROOM_HPP__
 
 # include "../Room.hpp"
-# include "../Course.hpp"
+
+class Course;
 
 class	Classroom: public Room {
 	public:
-		Classroom();
+		Classroom() {
+			this->_currentRoom = NULL;
+		}
 
 		void	assignCourse(Course* p_course) {
 			this->_currentRoom = p_course;
 		}
 
-		virtual bool	canEnter(Person* person) {
-			if (this->_occupants.size() < MAX_NB_STUDENTS_PER_CLASS)
-				return true;
-
-			return false;
-		}
+		virtual bool	canEnter(Person* person);
 
 	private:
 		Course*	_currentRoom;
 };
+
+# include "../Course.hpp"
 
 #endif

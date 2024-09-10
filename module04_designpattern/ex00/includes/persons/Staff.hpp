@@ -8,7 +8,7 @@
 class	Staff: public Person {
 	public:
 		void	sign(Form* p_form) {
-			std::cout << this->_name << " has sign a form." << std::endl;
+			std::cout << this->_name << " has sign form " << p_form->getFormType() << "." << std::endl;
 		}
 };
 

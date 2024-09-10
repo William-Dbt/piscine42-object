@@ -1,7 +1,7 @@
 #ifndef __FORM_HPP__
 # define __FORM_HPP__
 
-enum class	FormType {
+enum	FormType {
 	CourseFinished,
 	NeedMoreClassRoom,
 	NeedCourseCreation,
@@ -15,6 +15,10 @@ class	Form {
 		}
 
 		virtual void	execute() = 0;
+
+		const FormType&	getFormType() const {
+			return this->_formType;
+		}
 
 	protected:
 		Form() {}

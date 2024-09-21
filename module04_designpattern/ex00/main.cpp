@@ -19,6 +19,4 @@
 #include "includes/rooms/SecretarialOffice.hpp"
 #include "includes/rooms/StaffRestRoom.hpp"
 
-int	main() {
-
-}
+int	main() {}

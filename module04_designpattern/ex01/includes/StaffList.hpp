@@ -2,12 +2,9 @@
 # define __STAFFLIST_HPP__
 
 # include "Singleton.hpp"
+# include "List.hpp"
+# include "persons/Staff.hpp"
 
-class	StaffList : public Singleton<StaffList> {
-	public:
-
-	private:
-	
-};
+class	StaffList : public Singleton<StaffList>, public List<Staff> {};
 
 #endif

@@ -1,10 +1,10 @@
 #include <iostream>
 #include "../includes/Room.hpp"
 
-long long	Room::ID = 0;
+static long long	lastID = 0;
 
 Room::Room() {
-	this->ID = this->ID++;
+	this->ID = lastID++;
 }
 
 bool	Room::canEnter(Person* person) {

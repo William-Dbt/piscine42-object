@@ -21,7 +21,7 @@ class	Room {
 		const long long& getId() const;
 
 	protected:
-		static long long		ID;
+		long long				ID;
 		std::vector<Person*>	_occupants;
 };
 

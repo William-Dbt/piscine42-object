@@ -9,6 +9,10 @@ class	Course;
 
 class	Student: public Person {
 	public:
+		Student(const std::string& name) {
+			this->_name = name;
+		}
+
 		void	attendClass(Classroom* p_classroom) {
 			if (p_classroom->canEnter(this))
 				p_classroom->enter(this);

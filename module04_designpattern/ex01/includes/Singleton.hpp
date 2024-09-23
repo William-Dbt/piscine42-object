@@ -3,26 +3,36 @@
 
 # include <mutex>
 
-template<class T>
+template<typename T>
 class	Singleton {
 	public:
-		Singleton*	getInstance() {
-			this->_mutex.lock();
-			if (!this->_instance)
-				this->_instance = new Singleton<T>();
-
-			this->_mutex.unlock();
-			return this->_instance;
-		}
-
-	private:
-		Singleton() {}
 		Singleton(const Singleton&) {}
-
 		Singleton&	operator=(const Singleton&) {}
 
-		static Singleton*	_instance = NULL;
+		static T*	getInstance() {
+			if (!_instance) {
+				_mutex.lock();
+				if (!_instance)
+					_instance = new T();
+
+				_mutex.unlock();
+			}
+			std::cout << "instance ptr : " << _instance << '\n' << std::endl;
+			return _instance;
+		}
+
+	protected:
+		Singleton() {}
+
+	private:
+		static T*			_instance;
 		static std::mutex	_mutex;
 };
+
+template <typename T>
+T* Singleton<T>::_instance = NULL;
+
+template <typename T>
+std::mutex Singleton<T>::_mutex;
 
 #endif

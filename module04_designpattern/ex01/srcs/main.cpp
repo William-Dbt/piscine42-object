@@ -7,21 +7,11 @@
 #include "../includes/RoomList.hpp"
 #include "../includes/CourseList.hpp"
 
-template<typename T>
 void	handleListThread() {
-	T*	list = new T();
+	StudentList*	studentList = Singleton<StudentList>::getInstance();
 
-	(void)list;
+	(void)studentList;
 }
-
-// template<typename T>
-// void	threadTest() {
-// 	std::thread	thread1(handleListThread<T>);
-// 	std::thread	thread2(handleListThread<T>);
-
-// 	thread1.join();
-// 	thread2.join();
-// }
 
 int	main() {
 	{
@@ -138,6 +128,16 @@ int	main() {
 	}
 	{
 		std::cout << "----- ThreadSafe Tests -----" << std::endl;
+
+		std::thread	th0(handleListThread);
+		std::thread	th1(handleListThread);
+		std::thread	th2(handleListThread);
+		std::thread	th3(handleListThread);
+
+		th0.join();
+		th1.join();
+		th2.join();
+		th3.join();
 
 		std::cout << "---------------------" << std::endl;
 	}

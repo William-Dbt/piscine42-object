@@ -6,6 +6,10 @@
 
 class	Secretary: public Staff {
 	public:
+		Secretary(const std::string& name) {
+			this->_name = name;
+		}
+
 		Form*	createForm(FormType p_formType);
 
 		void	archiveForm();

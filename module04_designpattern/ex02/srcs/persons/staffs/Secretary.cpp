@@ -8,17 +8,17 @@
 
 Form*	Secretary::createForm(FormType p_formType) {
 	switch (p_formType) {
-		case FormType::CourseFinished:
-			return new CourseFinishedForm(FormType::CourseFinished);
+		case CourseFinished:
+			return new CourseFinishedForm(CourseFinished);
 
-		case FormType::NeedCourseCreation:
-			return new NeedCourseCreationForm(FormType::NeedCourseCreation);
+		case NeedCourseCreation:
+			return new NeedCourseCreationForm(NeedCourseCreation);
 
-		case FormType::NeedMoreClassRoom:
-			return new NeedMoreClassRoomForm(FormType::NeedMoreClassRoom);
+		case NeedMoreClassRoom:
+			return new NeedMoreClassRoomForm(NeedMoreClassRoom);
 
-		case FormType::SubscriptionToCourse:
-			return new SubscriptionToCourseForm(FormType::SubscriptionToCourse);
+		case SubscriptionToCourse:
+			return new SubscriptionToCourseForm(SubscriptionToCourse);
 
 		default:
 			break ;

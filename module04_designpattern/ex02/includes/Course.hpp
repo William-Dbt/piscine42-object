@@ -9,6 +9,7 @@
 
 class	Student;
 class	Professor;
+class	CourseFinishedForm;
 
 class	Course {
 	public:
@@ -21,6 +22,9 @@ class	Course {
 
 		const std::string&	getName() const;
 		const Professor*	getResponsable() const;
+		const std::vector<Student*>&		getStudentsList() const;
+
+		friend class CourseFinishedForm;
 
 	private:
 		std::string				_name;
@@ -33,5 +37,6 @@ class	Course {
 
 # include "persons/Student.hpp"
 # include "persons/staffs/Professor.hpp"
+# include "forms/CourseFinishedForm.hpp"
 
 #endif

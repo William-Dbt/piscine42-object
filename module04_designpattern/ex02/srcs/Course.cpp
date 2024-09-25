@@ -16,8 +16,11 @@ void	Course::assign(Professor* p_professor) {
 	if (this->_responsable == p_professor)
 		return ;
 
-	std::cout << "[Course::assign] The new professor for the course " << this->_name << " is " << p_professor->getName() << '!' << std::endl;
 	this->_responsable = p_professor;
+	if (p_professor->getCurrentCourse() != this)
+		p_professor->assignCourse(this);
+
+	std::cout << "[Course::assign] The new professor for the course " << this->_name << " is " << p_professor->getName() << '!' << std::endl;
 }
 
 void	Course::subscribe(Student* p_student) {
@@ -51,4 +54,8 @@ const std::string&	Course::getName() const {
 
 const Professor*	Course::getResponsable() const {
 	return this->_responsable;
+}
+
+const std::vector<Student*>&	Course::getStudentsList() const {
+	return this->_students;
 }

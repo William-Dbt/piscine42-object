@@ -6,6 +6,11 @@
 
 class	Professor: public Staff {
 	public:
+		Professor(const std::string& name) {
+			this->_name = name;
+			this->_currentCourse = NULL;
+		}
+
 		void	assignCourse(Course* p_course) {
 			this->_currentCourse = p_course;
 			p_course->assign(this);
@@ -17,6 +22,10 @@ class	Professor: public Staff {
 
 		void	closeCourse() {
 			std::cout << "The course " << this->_currentCourse->getName() << " is closed !" << std::endl;
+		}
+
+		const Course*	getCurrentCourse() const {
+			return this->_currentCourse;
 		}
 
 	private:

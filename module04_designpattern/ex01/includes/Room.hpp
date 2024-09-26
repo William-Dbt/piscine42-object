@@ -19,6 +19,8 @@ class	Room {
 
 		std::vector<Person*>::iterator	getItOfPerson(Person* person);
 
+		const long long&	getId() const;
+
 	private:
 		long long	_id;
 

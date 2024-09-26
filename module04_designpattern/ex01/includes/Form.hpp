@@ -16,6 +16,10 @@ class	Form {
 
 		virtual void	execute() = 0;
 
+		const FormType&	getFormType() const {
+			return this->_type;
+		}
+
 	private:
 		FormType	_type;
 };

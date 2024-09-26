@@ -62,3 +62,7 @@ std::vector<Person*>::iterator	Room::getItOfPerson(Person* person) {
 
 	return this->_occupants.end();
 }
+
+const long long&	Room::getId() const {
+	return this->_id;
+}

@@ -12,6 +12,7 @@ class	Form {
 	public:
 		Form(FormType type) {
 			this->_type = type;
+			this->_isSigned = false;
 		}
 
 		virtual void	execute() = 0;
@@ -20,8 +21,9 @@ class	Form {
 			return this->_type;
 		}
 
-	private:
+	protected:
 		FormType	_type;
+		bool		_isSigned;
 };
 
 #endif

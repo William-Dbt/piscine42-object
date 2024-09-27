@@ -14,6 +14,7 @@ class	Course {
 		void	subscribe(Student* student);
 
 		const std::string&	getName() const;
+		Professor*	getResponsable() const;
 
 	private:
 		std::string	_name;

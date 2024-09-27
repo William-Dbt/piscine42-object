@@ -44,3 +44,7 @@ void	Course::subscribe(Student* student) {
 const std::string&	Course::getName() const {
 	return this->_name;
 }
+
+Professor*	Course::getResponsable() const {
+	return this->_responsable;
+}
